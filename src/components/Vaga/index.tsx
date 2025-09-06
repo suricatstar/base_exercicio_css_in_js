@@ -1,4 +1,36 @@
-import styles from './Vaga.module.css'
+import styled from 'styled-components'
+import { AnchorHTMLAttributes } from 'react'
+
+const VagaItem = styled.li`
+  border: 1px solid var(--cor-principal);
+  background-color: var(--cor-secundaria);
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  list-style: none;
+`
+
+const VagaTitulo = styled.h3`
+  font-weight: bold;
+  margin-bottom: 16px;
+`
+
+const VagaLink = styled.a<AnchorHTMLAttributes<HTMLAnchorElement>>`
+  border-color: var(--cor-secundaria);
+  background-color: var(--cor-principal);
+  color: var(--cor-secundaria);
+  display: inline-block;
+  padding: 8px 16px;
+  text-decoration: none;
+  margin-top: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+`
 
 type Props = {
   titulo: string
@@ -11,8 +43,8 @@ type Props = {
 }
 
 const Vaga = (props: Props) => (
-  <li className={styles.vaga}>
-    <h3 className={styles.vagaTitulo}>{props.titulo}</h3>
+  <VagaItem>
+    <VagaTitulo>{props.titulo}</VagaTitulo>
     <ul>
       <li>Localizacao: {props.localizacao}</li>
       <li>Senioridade: {props.nivel}</li>
@@ -22,10 +54,8 @@ const Vaga = (props: Props) => (
       </li>
       <li>Requisitos: {props.requisitos.join(', ')}</li>
     </ul>
-    <a className={styles.vagaLink} href="#">
-      Ver detalhes e candidatar-se
-    </a>
-  </li>
+    <VagaLink href="#">Ver detalhes e candidatar-se</VagaLink>
+  </VagaItem>
 )
 
 export default Vaga
